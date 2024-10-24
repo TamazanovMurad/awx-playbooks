@@ -1,8 +1,13 @@
 ---
-- name: Example Playbook
-  hosts: all
+- name: Test Playbook to Check Execution
+  hosts: windows
   tasks:
-    - name: Ensure Windows feature is installed
-      win_feature:
-        name: Web-Server
-        state: present
+    - name: Get Windows Version
+      win_shell: |
+        [System.Environment]::OSVersion.Version
+      register: os_version
+
+    - name: Show Windows Version
+      debug:
+        var: os_version.stdout
+
