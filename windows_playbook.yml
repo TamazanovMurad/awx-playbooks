@@ -1,9 +1,9 @@
 ---
-- name: Test Ansible connectivity with Windows
+- name: Minimal test playbook for Windows
   hosts: windows
   gather_facts: no
   tasks:
-    - name: Check connectivity to Windows PC
+    - name: Test connectivity to Windows PC
       win_ping:
 
     - name: Create a test directory
@@ -16,6 +16,6 @@
         path: C:\ansible_test\test_file.txt
         state: touch
 
-    - name: Write a test message to the file
-      win_shell: echo "Ansible test successful!" > C:\ansible_test\test_file.txt
+    - name: Append a test message to the file
+      win_shell: Add-Content -Path C:\ansible_test\test_file.txt -Value "Ansible test successful!"
 
